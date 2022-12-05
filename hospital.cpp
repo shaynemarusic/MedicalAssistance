@@ -7,7 +7,8 @@ hospital::hospital::hospital(string& name, string& oldName) {
     this->city = "";
     this->state = "";
     this->facilityType = "";
-    this->ratingOverall = "";
+    //placeholder until rating is set
+    this->ratingOverall = 0;
 //vectors are automatically empty so no need to do anything for them
 }
 hospital::hospital::hospital() {
@@ -17,7 +18,7 @@ hospital::hospital::hospital() {
     this->city = "";
     this->state = "";
     this->facilityType = "";
-    this->ratingOverall = "";
+    this->ratingOverall = 0;
 //vectors are automatically empty so no need to do anything for them
 }
 
@@ -30,20 +31,41 @@ void hospital::hospital::setString(string &stringData, const string& category) {
         this->facilityType = stringData;
     } else if (category=="overallrating") {
         if (stringData != "-1") {
-            this->ratingOverall = stringData;
+            this->ratingOverall = stoi(stringData);
         } else {
-            this->ratingOverall = "No rating";
+            //no data
+            this->ratingOverall = -1;
         }
     } else if (category=="state") {
         this->state = stringData;
     } else if (category=="heartattack") {
-        this->heartAttackCost = stringData;
+        this->heartAttackCost = stoi(stringData);
     } else if (category=="heartfailure") {
-        this->heartFailureCost = stringData;
+        this->heartFailureCost = stoi(stringData);
     } else if (category=="pneumonia") {
-        this->pneumoniaCost = stringData;
+        this->pneumoniaCost = stoi(stringData);
     } else if (category=="hipknee") {
-        this->hipkneeCost = stringData;
+        this->hipkneeCost = stoi(stringData);
+    } else if (category=="timeliness") {
+        if (stringData=="Above") {
+            this->timelinessRating = 3;
+        } else if (stringData=="Below") {
+            this->timelinessRating = 1;
+        } else if (stringData=="Same") {
+            this->timelinessRating = 2;
+        } else if (stringData=="None") {
+            this->timelinessRating = 0;
+        }
+    } else if (category=="safety") {
+        if (stringData=="Above") {
+            this->safetyRating = 3;
+        } else if (stringData=="Below") {
+            this->safetyRating = 1;
+        } else if (stringData=="Same") {
+            this->safetyRating = 2;
+        } else if (stringData=="None") {
+            this->safetyRating = 0;
+        }
     }
 }
 
@@ -55,17 +77,21 @@ string hospital::hospital::returnString(const string& category) {
     } else if (category=="facility") {
         return this->facilityType;
     } else if (category=="overallrating") {
-        return this->ratingOverall;
+        return to_string(this->ratingOverall);
     } else if (category=="state") {
         return this->state;
     } else if (category=="heartattack") {
-        return this->heartAttackCost;
+        return to_string(this->heartAttackCost);
     } else if (category=="heartfailure") {
-        return this->heartFailureCost;
+        return to_string(this->heartFailureCost);
     } else if (category=="pneumonia") {
-        return this->pneumoniaCost;
+        return to_string(this->pneumoniaCost);
     } else if (category=="hipknee") {
-        return this->hipkneeCost;
+        return to_string(this->hipkneeCost);
+    } else if (category=="timeliness") {
+        return to_string(this->timelinessRating);
+    } else if (category=="safety") {
+        return to_string(this->safetyRating);
     }
     return "";
 }

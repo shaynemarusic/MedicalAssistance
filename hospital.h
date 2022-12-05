@@ -4,8 +4,8 @@
 using namespace std;
 class hospital {
 private:
-    string name, city,state,facilityType, ratingOverall, oldName, heartAttackCost, heartFailureCost, pneumoniaCost, hipkneeCost;
-    int number;
+    string name, city,state,facilityType, oldName;
+    int number, ratingOverall,heartAttackCost, heartFailureCost, pneumoniaCost, hipkneeCost, timelinessRating, safetyRating;
 public:
     hospital();
     hospital(string& name, string& oldName);

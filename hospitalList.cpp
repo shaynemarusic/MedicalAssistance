@@ -20,7 +20,7 @@ string hospitalList::initializeHospital(string &name, string& oldName) {
                     }
                 }
                 if (!isFound) {
-                    mainList.push_back(make_pair(newName, hospital(newName, oldName)));
+                    mainList.push_back(make_pair(oldName, hospital(newName, oldName)));
                     return newName;
                 }
             }
