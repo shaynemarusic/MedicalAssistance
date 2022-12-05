@@ -28,11 +28,11 @@ int main() {
 
     //timing system from https://stackoverflow.com/questions/12231166/timing-algorithm-clock-vs-time-in-c
     auto t1 = std::chrono::high_resolution_clock::now();
+
     string data, placeholder;
     getline(file, placeholder);
     while (getline(file, data)) {
     stringstream categories(data);
-    vector<string> tempData;
     string name, oldName, data2;
     //name
     getline(categories, name, ',');
@@ -55,47 +55,34 @@ int main() {
     getline(categories, data2, ',');
     data2 = data2.substr(1, data2.size()-2);
     listOfHospitals.setHospitalDataString(name, data2, "overallrating");
-    //other ratings data
+    //other ratings data (unused)
     for (int i = 0; i < 7; i++) {
         getline(categories, data2, ',');
-        data2 = data2.substr(1, data2.size()-2);
-        tempData.push_back(data2);
     }
-    tempData.clear();
-    listOfHospitals.setHospitalDataVector(name, tempData, "overallrating");
     //heart attack data
-    for (int i = 0; i < 3; i++) {
-        getline(categories, data2, ',');
-        data2 = data2.substr(1, data2.size()-2);
-        tempData.push_back(data2);
-    }
-    tempData.clear();
-    listOfHospitals.setHospitalDataVector(name, tempData, "heartattack");
+    getline(categories, data2, ',');
+    data2 = data2.substr(1, data2.size()-2);
+    listOfHospitals.setHospitalDataString(name, data2, "heartattack");
+    getline(categories, data2, ',');
+    getline(categories, data2, ',');
     //heart failure data
-    for (int i = 0; i < 3; i++) {
-        getline(categories, data2, ',');
-        data2 = data2.substr(1, data2.size()-2);
-        tempData.push_back(data2);
-    }
-    tempData.clear();
-    listOfHospitals.setHospitalDataVector(name, tempData, "heartfailure");
+    getline(categories, data2, ',');
+    data2 = data2.substr(1, data2.size()-2);
+    listOfHospitals.setHospitalDataString(name, data2, "heartfailure");
+    getline(categories, data2, ',');
+    getline(categories, data2, ',');
     //pneumonia data
-    for (int i = 0; i < 3; i++) {
-        getline(categories, data2, ',');
-        data2 = data2.substr(1, data2.size()-2);
-        tempData.push_back(data2);
-    }
-    tempData.clear();
-    listOfHospitals.setHospitalDataVector(name, tempData, "pneumonia");
+    getline(categories, data2, ',');
+    data2 = data2.substr(1, data2.size()-2);
+    listOfHospitals.setHospitalDataString(name, data2, "pneumonia");
+    getline(categories, data2, ',');
+    getline(categories, data2, ',');
     //hip/knee data
-    for (int i = 0; i < 3; i++) {
-        getline(categories, data2, ',');
-        data2 = data2.substr(1, data2.size()-2);
-        tempData.push_back(data2);
+    getline(categories, data2, ',');
+    data2 = data2.substr(1, data2.size()-2);
+    listOfHospitals.setHospitalDataString(name, data2, "hipknee");
     }
-    listOfHospitals.setHospitalDataVector(name, tempData, "hipknee");
-    tempData.clear();
-    }
+
     auto t2 = std::chrono::high_resolution_clock::now();
     //calculate time taken to initially create all hospital objects in seconds
     cout << "Initial database loaded in " <<chrono::duration_cast<std::chrono::milliseconds>(t2-t1).count() <<" milliseconds." <<endl;

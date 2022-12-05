@@ -36,30 +36,14 @@ void hospital::hospital::setString(string &stringData, const string& category) {
         }
     } else if (category=="state") {
         this->state = stringData;
-    }
-}
-
-void hospital::hospital::setVector(vector<string> &vectorData, const string& category) {
-    if (category=="heartattack") {
-        for (int i = 0; i < vectorData.size(); i++) {
-            this->heartAttackData.push_back(vectorData.at(i));
-        }
+    } else if (category=="heartattack") {
+        this->heartAttackCost = stringData;
     } else if (category=="heartfailure") {
-        for (int i = 0; i < vectorData.size(); i++) {
-            this->heartFailureData.push_back(vectorData.at(i));
-        }
+        this->heartFailureCost = stringData;
     } else if (category=="pneumonia") {
-        for (int i = 0; i < vectorData.size(); i++) {
-            this->pneumoniaData.push_back(vectorData.at(i));
-        }
+        this->pneumoniaCost = stringData;
     } else if (category=="hipknee") {
-        for (int i = 0; i < vectorData.size(); i++) {
-            this->hipkneeData.push_back(vectorData.at(i));
-        }
-    } else if (category=="ratings") {
-        for (int i = 0; i < vectorData.size(); i++) {
-            this->ratingsData.push_back(vectorData.at(i));
-        }
+        this->hipkneeCost = stringData;
     }
 }
 
@@ -74,6 +58,14 @@ string hospital::hospital::returnString(const string& category) {
         return this->ratingOverall;
     } else if (category=="state") {
         return this->state;
+    } else if (category=="heartattack") {
+        return this->heartAttackCost;
+    } else if (category=="heartfailure") {
+        return this->heartFailureCost;
+    } else if (category=="pneumonia") {
+        return this->pneumoniaCost;
+    } else if (category=="hipknee") {
+        return this->hipkneeCost;
     }
     return "";
 }

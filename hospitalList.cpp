@@ -8,14 +8,6 @@ void hospitalList::setHospitalDataString(string& name, string &stringData, const
     }
 }
 
-void hospitalList::setHospitalDataVector(string& name, vector<string> &vectorData, const string& category) {
-    for (auto &i :mainList) {
-        if (i.first==name) {
-            i.second.setVector(vectorData, category);
-        }
-    }
-}
-
 string hospitalList::initializeHospital(string &name, string& oldName) {
     for (auto &i :mainList) {
         if (i.first==name) {
