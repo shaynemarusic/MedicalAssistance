@@ -1,20 +1,16 @@
 #pragma once
-#include <unordered_map>
 #include <string>
 #include <vector>
 using namespace std;
-class hospitalList {
+class hospital {
 private:
-    class hospital {
-    private:
-        string name, city,facilityType, ratingOverall;
-        vector<string> heartAttackData, heartFailureData, pneumoniaData, hipkneeData;
-    public:
-        hospital();
-        void setString(string& stringData, string& category);
-        void setVector(vector<string>& vectorData, string& category);
-    };
-    unordered_map<string, hospital> mainList;
+    string name, city,state,facilityType, ratingOverall, oldName;
+    int number;
+    vector<string> heartAttackData, heartFailureData, pneumoniaData, hipkneeData, ratingsData;
 public:
-    void setHospital(vector<string>& hospitalData);
+    hospital();
+    hospital(string& name, string& oldName);
+    void setString(string& stringData, const string& category);
+    void setVector(vector<string>& vectorData, const string& category);
+    string returnString(const string& category);
 };
