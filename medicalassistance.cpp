@@ -2,7 +2,9 @@
 #include <string>
 #include <iomanip>
 #include <fstream>
+#include <chrono>
 using namespace std;
+
 int main() {
     bool valid = false;
     string firstSelection, secondSelection;
@@ -21,6 +23,16 @@ int main() {
         }
         cout << "Invalid selection."<<endl;
     }
+    fstream file("hospitals.csv");
+
+    //timing system from https://stackoverflow.com/questions/11062804/measuring-the-runtime-of-a-c-code
+    auto start = chrono::system_clock::now();
+
+    auto end = chrono::system_clock::now();
+    //calculate time taken to initially create all hospital objects in seconds
+    auto elapsed = chrono::duration_cast<std::chrono::seconds>(end - start);
+    cout << elapsed.count() << endl;
+    cout << "Initial database loaded in";
     cout << "---------------------------------------------";
     cout << "Which of these criteria is important to you?"
             "1) Location"
