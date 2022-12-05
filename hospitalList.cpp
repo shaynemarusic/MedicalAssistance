@@ -19,10 +19,6 @@ string hospitalList::initializeHospital(string &name) {
     return name;
 }
 
-unordered_map<string,hospital> hospitalList::accessList() {
-    return this->mainList;
-}
-
 void hospitalList::initializeAverageCosts() {
     for (auto &i : mainList) {
         i.second.setString("", "average");

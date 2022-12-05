@@ -9,5 +9,4 @@ public:
     void initializeAverageCosts();
     string initializeHospital(string& name);
     void pushHospital(hospital newHospital);
-    unordered_map<string,hospital> accessList();
 };

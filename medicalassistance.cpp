@@ -93,12 +93,21 @@ int main() {
     listOfHospitals.initializeAverageCosts();
     auto t2 = std::chrono::high_resolution_clock::now();
     //calculate time taken to initially create all hospital objects in seconds
-    cout << "Initial database loaded in " <<chrono::duration_cast<std::chrono::milliseconds>(t2-t1).count() <<" milliseconds." <<endl;
+    cout << "Initial database loaded in " <<chrono::duration_cast<std::chrono::microseconds>(t2-t1).count() <<" microseconds." <<endl;
     cout << "---------------------------------------------\n";
-    cout << "Please type a state name:\n";
+    cout << "Please type a state name (2 letters, all capitalized):\n";
     string stateName;
     cin >> stateName;
     //do something with searching + placing
+    unordered_map<string, hospital> stateList;
+    t1 = std::chrono::high_resolution_clock::now();
+    for (auto &i : listOfHospitals.mainList) {
+        if (i.second.returnString("state") == stateName) {
+            stateList[i.second.returnString("name")] = i.second;
+        }
+    }
+    t2 = std::chrono::high_resolution_clock::now();
+    cout << "State-specific list loaded in " <<chrono::duration_cast<std::chrono::microseconds>(t2-t1).count() <<" microseconds." <<endl;
     cout << "---------------------------------------------\n";
     cout << "Which of these criteria is important to you?\n"
             "1) Cost of Care\n"
