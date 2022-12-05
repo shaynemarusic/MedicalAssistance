@@ -99,14 +99,24 @@ int main() {
     string stateName;
     cin >> stateName;
     //do something with searching + placing
-    unordered_map<string, hospital> stateList;
-    t1 = std::chrono::high_resolution_clock::now();
-    for (auto &i : listOfHospitals.mainList) {
-        if (i.second.returnString("state") == stateName) {
-            stateList[i.second.returnString("name")] = i.second;
+    vector<hospital> stateList;
+    bool foundState = false;
+    while (!foundState) {
+        t1 = std::chrono::high_resolution_clock::now();
+        for (auto &i : listOfHospitals.mainList) {
+            if (i.second.returnString("state") == stateName) {
+                stateList.push_back(i.second);
+                foundState = true;
+            }
+        }
+        t2 = std::chrono::high_resolution_clock::now();
+        if (!foundState) {
+            cout << "Please type in a valid state name." << endl;
+            cout << "Please type a state name (2 letters, all capitalized):\n";
+            cin >> stateName;
         }
     }
-    t2 = std::chrono::high_resolution_clock::now();
+    cout << "The state being searched is: " << stateName << endl;
     cout << "State-specific list loaded in " <<chrono::duration_cast<std::chrono::microseconds>(t2-t1).count() <<" microseconds." <<endl;
     cout << "---------------------------------------------\n";
     cout << "Which of these criteria is important to you?\n"
