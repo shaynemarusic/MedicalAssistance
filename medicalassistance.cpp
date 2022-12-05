@@ -90,11 +90,10 @@ int main() {
         data2 = data2.substr(1, data2.size()-2);
         listOfHospitals.setHospitalDataString(name, data2, "hipknee");
     }
-
+    listOfHospitals.initializeAverageCosts();
     auto t2 = std::chrono::high_resolution_clock::now();
     //calculate time taken to initially create all hospital objects in seconds
     cout << "Initial database loaded in " <<chrono::duration_cast<std::chrono::milliseconds>(t2-t1).count() <<" milliseconds." <<endl;
-    listOfHospitals.initializeAverageCosts();
     cout << "---------------------------------------------\n";
     cout << "Please type a state name:\n";
     string stateName;
