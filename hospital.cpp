@@ -22,7 +22,7 @@ hospital::hospital::hospital() {
 //vectors are automatically empty so no need to do anything for them
 }
 
-void hospital::hospital::setString(string &stringData, const string& category) {
+void hospital::hospital::setString(string stringData, const string& category) {
     if (category=="name") {
         this->name = stringData;
     } else if (category=="city") {
@@ -39,13 +39,29 @@ void hospital::hospital::setString(string &stringData, const string& category) {
     } else if (category=="state") {
         this->state = stringData;
     } else if (category=="heartattack") {
-        this->heartAttackCost = stoi(stringData);
+        if (stringData != "0") {
+            this->heartAttackCost = stoi(stringData);
+        } else {
+            this->heartAttackCost = 0;
+        }
     } else if (category=="heartfailure") {
-        this->heartFailureCost = stoi(stringData);
+        if (stringData != "0") {
+            this->heartFailureCost = stoi(stringData);
+        } else {
+            this->heartFailureCost = 0;
+        }
     } else if (category=="pneumonia") {
-        this->pneumoniaCost = stoi(stringData);
+        if (stringData != "0") {
+            this->pneumoniaCost = stoi(stringData);
+        } else {
+            this->pneumoniaCost = 0;
+        }
     } else if (category=="hipknee") {
-        this->hipkneeCost = stoi(stringData);
+        if (stringData != "0") {
+            this->hipkneeCost = stoi(stringData);
+        } else {
+            this->hipkneeCost = 0;
+        }
     } else if (category=="timeliness") {
         if (stringData=="Above") {
             this->timelinessRating = 3;
@@ -66,6 +82,10 @@ void hospital::hospital::setString(string &stringData, const string& category) {
         } else if (stringData=="None") {
             this->safetyRating = 0;
         }
+    } else if (category=="average") {
+        this->averageCost = ((double)(this->heartAttackCost+this->heartFailureCost+this->pneumoniaCost+this->hipkneeCost))/(double)4.00;
+    } else if (category=="number") {
+        this->number = stoi(stringData);
     }
 }
 
@@ -92,6 +112,10 @@ string hospital::hospital::returnString(const string& category) {
         return to_string(this->timelinessRating);
     } else if (category=="safety") {
         return to_string(this->safetyRating);
+    } else if (category=="average") {
+        return to_string(this->averageCost);
+    } else if (category=="number") {
+        return to_string(this->number);
     }
     return "";
 }

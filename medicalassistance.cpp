@@ -30,17 +30,15 @@ int main() {
 
     //timing system from https://stackoverflow.com/questions/12231166/timing-algorithm-clock-vs-time-in-c
     auto t1 = std::chrono::high_resolution_clock::now();
-
     string data, placeholder;
     getline(file, placeholder);
     while (getline(file, data)) {
         stringstream categories(data);
-        string name, oldName, data2;
+        string name, data2;
         //name
         getline(categories, name, ',');
         name = name.substr(1, name.size()-2);
-        oldName = name;
-        name = listOfHospitals.initializeHospital(name, oldName);
+        name = listOfHospitals.initializeHospital(name);
         //city
         getline(categories, data2, ',');
         data2 = data2.substr(1, data2.size()-2);
@@ -96,6 +94,7 @@ int main() {
     auto t2 = std::chrono::high_resolution_clock::now();
     //calculate time taken to initially create all hospital objects in seconds
     cout << "Initial database loaded in " <<chrono::duration_cast<std::chrono::milliseconds>(t2-t1).count() <<" milliseconds." <<endl;
+    listOfHospitals.initializeAverageCosts();
     cout << "---------------------------------------------\n";
     cout << "Please type a state name:\n";
     string stateName;

@@ -3,10 +3,11 @@
 #include <map>
 #include "hospital.h"
 class hospitalList {
-private:
-    vector<hospital> mainList;
 public:
+    unordered_map<string,hospital> mainList;
     void setHospitalDataString(string& name, string& stringData, const string& category);
-    string initializeHospital(string& name, string& oldName);
-    vector<hospital> accessList();
+    void initializeAverageCosts();
+    string initializeHospital(string& name);
+    void pushHospital(hospital newHospital);
+    unordered_map<string,hospital> accessList();
 };
